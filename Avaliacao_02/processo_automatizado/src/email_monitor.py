@@ -7,6 +7,7 @@ from email.utils import parseaddr
 from email.utils import parseaddr
 from pathlib import Path
 import sys
+from src.preencher_planilha import processar_ficha_cadastral, extrair_dados_ficha
 
 APP_ROOT = Path(__file__).resolve().parents[1]
 if str(APP_ROOT) not in sys.path:
@@ -23,6 +24,7 @@ from src.drive import (
     autenticar_google_drive,
     upload_arquivo,
     criar_subpasta,
+    mover_arquivo,
     PASTA_ENCAMINHADOS,
     PASTA_DOCUMENTOS_OK,
     PASTA_DRIVE_DOWNLOAD,
@@ -251,7 +253,9 @@ def baixar_anexos_pdf(mail):
 
         remetente = mensagem.get("From")
 
-        if not assunto.startswith("Cadastro Portal Fake -"):
+        if not assunto.startswith(
+            "Cadastro Portal Fake -"
+        ):
             continue
 
         nome_cliente = extrair_nome_cliente(
@@ -262,12 +266,30 @@ def baixar_anexos_pdf(mail):
             f"Cliente identificado: {nome_cliente}"
         )
 
-        print("\n" + "=" * 50)
-        print(f"Assunto: {assunto}")
-        print(f"Remetente: {remetente}")
+        print(
+            "\n" + "=" * 50
+        )
+
+        print(
+            f"Assunto: {assunto}"
+        )
+
+        print(
+            f"Remetente: {remetente}"
+        )
 
         encontrou_pdf = False
+
         arquivos_baixados = []
+
+        caminho_ficha = None
+
+        # Guarda ID e nome dos arquivos no Drive
+        arquivos_drive = []
+
+        # ==========================================
+        # PROCESSAR ANEXOS
+        # ==========================================
 
         for parte in mensagem.walk():
 
@@ -277,38 +299,42 @@ def baixar_anexos_pdf(mail):
                 )
             )
 
-            if (
-                "attachment"
-                not in content_disposition
-            ):
+            if "attachment" not in content_disposition:
                 continue
 
-            nome_arquivo = (
-                parte.get_filename()
-            )
+            nome_arquivo = parte.get_filename()
 
             if not nome_arquivo:
                 continue
-            
+
             try:
-                nome_arquivo = (
-                    decodificar_texto(
-                      nome_arquivo
+
+                nome_arquivo = decodificar_texto(
+                    nome_arquivo
                 )
-            )
+
             except Exception as e:
-                print(f"Erro ao decodificar o nome do arquivo: {e}")
+
+                print(
+                    f"Erro ao decodificar o nome "
+                    f"do arquivo: {e}"
+                )
+
                 continue
 
-            if not nome_arquivo.lower().endswith(
-                ".pdf"
-            ):
+            if not nome_arquivo.lower().endswith(".pdf"):
                 continue
 
             try:
-            # Upload direto para o Google Drive
-                print(f"Fazendo upload do arquivo: {nome_arquivo}")
-                conteudo = parte.get_payload(decode=True)
+
+                print(
+                    f"Fazendo upload do arquivo: "
+                    f"{nome_arquivo}"
+                )
+
+                conteudo = parte.get_payload(
+                    decode=True
+                )
 
                 os.makedirs(
                     PASTA_DOWNLOAD,
@@ -320,28 +346,44 @@ def baixar_anexos_pdf(mail):
                     nome_arquivo
                 )
 
-                with open(caminho_pdf, "wb") as arquivo:
+                # Salvar PDF localmente
+                with open(
+                    caminho_pdf,
+                    "wb"
+                ) as arquivo:
+
                     arquivo.write(conteudo)
 
-                # print(
-                #     f"PDF salvo localmente: {caminho_pdf}"
-                # )
+                # ==================================
+                # UPLOAD PARA O GOOGLE DRIVE
+                # ==================================
 
-                upload_arquivo(
+                arquivo_id = upload_arquivo(
                     service,
                     caminho_pdf,
                     PASTA_DRIVE_DOWNLOAD
                 )
-                # upload_arquivo(
-                #     service,
-                #     parte.get_payload(decode=True),
-                #     PASTA_DOWNLOAD  # ID da pasta de downloads no Google Drive
-                # )
-                print(
-                    f"PDF enviado para o Google Drive: {nome_arquivo}"
+
+                # Guardar nome + ID
+                arquivos_drive.append(
+                    {
+                        "nome": nome_arquivo,
+                        "id": arquivo_id
+                    }
                 )
+
+                print(
+                    f"PDF enviado para o Google Drive: "
+                    f"{nome_arquivo}"
+                )
+
             except Exception as e:
-                print(f"Erro ao fazer upload do arquivo {nome_arquivo}: {e}")
+
+                print(
+                    f"Erro ao fazer upload do arquivo "
+                    f"{nome_arquivo}: {e}"
+                )
+
                 continue
 
             encontrou_pdf = True
@@ -350,9 +392,17 @@ def baixar_anexos_pdf(mail):
                 nome_arquivo
             )
 
-            # print(
-            #     f"PDF enviado para o Google Drive: {nome_arquivo}"
-            # )
+            # ==================================
+            # IDENTIFICAR FICHA CADASTRAL
+            # ==================================
+
+            if "ficha_cadastro" in nome_arquivo.lower():
+
+                caminho_ficha = caminho_pdf
+
+        # ==========================================
+        # VERIFICAR SE ENCONTROU PDF
+        # ==========================================
 
         if encontrou_pdf:
 
@@ -361,79 +411,203 @@ def baixar_anexos_pdf(mail):
             )
 
             for arquivo in arquivos_baixados:
+
                 print(
                     f" - {arquivo}"
                 )
+
+            # ======================================
+            # VERIFICAR DOCUMENTAÇÃO
+            # ======================================
 
             if documentacao_completa(
                 arquivos_baixados
             ):
 
+                status_documentacao = "Aprovado"
+
                 print(
                     "\nDocumentação COMPLETA."
                 )
+
                 nome, email_cliente = parseaddr(
                     remetente
                 )
+
                 print(
-                    f"Enviando confirmação para: {email_cliente}"
+                    f"Enviando confirmação para: "
+                    f"{email_cliente}"
                 )
 
                 enviar_confirmacao(
                     email_cliente
                 )
 
-                # Criar subpasta dentro de "Encaminhados"
+                # ==================================
+                # CRIAR PASTA DO CLIENTE
+                # ==================================
+
                 pasta_cliente = criar_subpasta(
                     service,
                     nome_cliente,
                     PASTA_ENCAMINHADOS
                 )
 
+                print(
+                    f"\nPasta criada para o cliente: "
+                    f"{nome_cliente}"
+                )
+
+                # ==================================
+                # MOVER DOCUMENTOS
+                # ==================================
+
+                print(
+                    "\nMovendo documentos para "
+                    "Documentos_Encaminhados..."
+                )
+
+                for arquivo in arquivos_drive:
+
+                    try:
+
+                        mover_arquivo(
+                            service,
+                            arquivo["id"],
+                            pasta_cliente
+                        )
+
+                    except Exception as e:
+
+                        print(
+                            f"Erro ao mover "
+                            f"{arquivo['nome']}: {e}"
+                        )
+
+            # ======================================
+            # DOCUMENTAÇÃO INCOMPLETA
+            # ======================================
+
             else:
+
+                status_documentacao = "Pendente"
 
                 print(
                     "\nDocumentação INCOMPLETA."
                 )
+
                 nome, email_cliente = parseaddr(
                     remetente
                 )
+
                 faltantes = documentos_faltantes(
                     arquivos_baixados
                 )
 
                 print(
-                    "Documentos faltantes:"
+                    "\nDocumentos faltantes:"
                 )
 
                 for doc in faltantes:
+
                     print(
                         f"- {doc}"
                     )
 
                 print(
-                    f"Enviando pendência para: {email_cliente}"
+                    f"\nEnviando pendência para: "
+                    f"{email_cliente}"
                 )
+
                 enviar_pendencia(
                     email_cliente,
                     faltantes
                 )
 
-                # Criar subpasta dentro de "Documentos_Pendentes"
+                # ==================================
+                # CRIAR PASTA DE PENDÊNCIAS
+                # ==================================
+
                 pasta_cliente = criar_subpasta(
                     service,
                     nome_cliente,
                     PASTA_DOCUMENTOS_PENDENTES
                 )
 
+                print(
+                    f"\nPasta de pendências criada "
+                    f"para: {nome_cliente}"
+                )
+
+                # ==================================
+                # MOVER DOCUMENTOS PARA PENDENTES
+                # ==================================
+
+                print(
+                    "\nMovendo documentos para "
+                    "Documentos_Pendentes..."
+                )
+
+                for arquivo in arquivos_drive:
+
+                    try:
+
+                        mover_arquivo(
+                            service,
+                            arquivo["id"],
+                            pasta_cliente
+                        )
+
+                    except Exception as e:
+
+                        print(
+                            f"Erro ao mover "
+                            f"{arquivo['nome']}: {e}"
+                        )
+
+            # ======================================
+            # ATUALIZAR PLANILHA
+            # ======================================
+
+            if caminho_ficha:
+
+                print(
+                    "\nExtraindo dados da "
+                    "ficha cadastral..."
+                )
+
+                dados_ficha = extrair_dados_ficha(
+                    caminho_ficha
+                )
+
+                if dados_ficha:
+
+                    processar_ficha_cadastral(
+                        dados_ficha,
+                        status_documentacao
+                    )
+
+                    print(
+                        f"Planilha atualizada com status: "
+                        f"{status_documentacao}"
+                    )
+
+                else:
+
+                    print(
+                        "Não foi possível extrair "
+                        "os dados da ficha."
+                    )
+
         else:
 
             print(
-                "Nenhum PDF encontrado."
+                "\nNenhum PDF encontrado."
             )
 
-        print("=" * 50)
-
+        print(
+            "=" * 50
+        )
 def processar_emails():
 
     try:

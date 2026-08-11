@@ -1,0 +1,17 @@
+# Ambiente virtual
+av2/
+venv/
+.venv/
+
+# Credenciais e tokens
+.env
+client_secret.json
+token.pickle
+token_sheets.pickle
+
+# Python
+__pycache__/
+*.pyc
+
+# Arquivos temporários
+downloads/

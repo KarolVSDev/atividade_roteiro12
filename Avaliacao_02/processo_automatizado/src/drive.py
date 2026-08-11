@@ -74,6 +74,7 @@ def upload_arquivo(
     print(
         f"Upload realizado: {arquivo['name']} na pasta ID: {pasta_id}"
     )
+    return arquivo["id"]
 
 def criar_subpasta(
     service,
@@ -84,12 +85,13 @@ def criar_subpasta(
     query = (
         f"name='{nome_cliente}' "
         f"and '{pasta_pai_id}' in parents "
-        "and mimeType='application/vnd.google-apps.folder'"
+        "and mimeType='application/vnd.google-apps.folder' "
+        "and trashed=false"
     )
 
     resultado = service.files().list(
         q=query,
-        fields="files(id,name)"
+        fields="files(id,name,parents)"
     ).execute()
 
     pastas = resultado.get(
@@ -98,7 +100,22 @@ def criar_subpasta(
     )
 
     if pastas:
-        return pastas[0]["id"]
+
+        pasta_id = pastas[0]["id"]
+
+        print(
+            f"Pasta já existente: {nome_cliente}"
+        )
+
+        print(
+            f"ID da pasta: {pasta_id}"
+        )
+
+        print(
+            f"Pasta pai: {pasta_pai_id}"
+        )
+
+        return pasta_id
 
     metadata = {
         "name": nome_cliente,
@@ -108,11 +125,56 @@ def criar_subpasta(
 
     pasta = service.files().create(
         body=metadata,
-        fields="id"
+        fields="id,name,parents"
     ).execute()
 
     print(
-        f"Pasta criada: {nome_cliente}"
+        f"Pasta criada: {pasta['name']}"
+    )
+
+    print(
+        f"ID da pasta criada: {pasta['id']}"
+    )
+
+    print(
+        f"Pasta pai: {pasta_pai_id}"
     )
 
     return pasta["id"]
+
+def mover_arquivo(
+    service,
+    arquivo_id,
+    nova_pasta_id
+):
+
+    arquivo = service.files().get(
+        fileId=arquivo_id,
+        fields="id,name,parents"
+    ).execute()
+
+    pais_atuais = arquivo.get(
+        "parents",
+        []
+    )
+
+    resultado = service.files().update(
+        fileId=arquivo_id,
+        addParents=nova_pasta_id,
+        removeParents=",".join(pais_atuais),
+        fields="id,name,parents"
+    ).execute()
+
+    # print(
+    #     f"Arquivo movido: {resultado['name']}"
+    # )
+
+    # print(
+    #     f"Novo pai: {nova_pasta_id}"
+    # )
+
+    # print(
+    #     f"Parents atuais: {resultado.get('parents', [])}"
+    # )
+
+    return resultado
