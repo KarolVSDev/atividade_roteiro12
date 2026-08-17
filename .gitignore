@@ -1,0 +1,6 @@
+jamil/
+.pytest_cache/
+__pycache__/
+*.pyc
+logs/
+.env
