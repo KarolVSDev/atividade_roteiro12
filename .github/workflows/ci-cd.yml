@@ -28,5 +28,4 @@ jobs:
 
       - name: Executar testes
         run: |
-          cd Avaliacao_02/processo_automatizado
-          python -m pytest -v
+          python -m pytest Avaliacao_02/processo_automatizado/tests -v
