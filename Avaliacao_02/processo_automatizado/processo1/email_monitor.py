@@ -51,18 +51,25 @@ def extrair_nome_cliente(remetente):
     return email.split("@")[0]
 
 def decodificar_texto(texto):
-    if texto is None: return ""
-    partes = decode_header(texto)
-    resultado = ""
-    for valor, encoding in partes:
-        if isinstance(valor, bytes):
-            try:
-                resultado += valor.decode(encoding or "utf-8", errors="replace")
-            except (UnicodeDecodeError, LookupError):
-                resultado += valor.decode("latin-1", errors="replace")
-        else:
-            resultado += valor
-    return resultado
+    if not texto: 
+        return ""
+    if not isinstance(texto, (str, bytes)):
+        texto = str(texto)
+    
+    try:
+        partes = decode_header(texto)
+        resultado = ""
+        for valor, encoding in partes:
+            if isinstance(valor, bytes):
+                try:
+                    resultado += valor.decode(encoding or "utf-8", errors="replace")
+                except (UnicodeDecodeError, LookupError):
+                    resultado += valor.decode("latin-1", errors="replace")
+            else:
+                resultado += str(valor) if valor else ""
+        return resultado
+    except Exception:
+        return str(texto) if texto else ""
 
 def documentacao_completa(lista_arquivos):
     encontrou_rg = encontrou_cpf = encontrou_comprovante = False
@@ -112,10 +119,15 @@ def baixar_anexos_pdf(mail):
         if status != "OK": continue
 
         mensagem = email_module.message_from_bytes(dados[0][1])
-        assunto = decodificar_texto(mensagem.get("Subject"))
-        remetente = mensagem.get("From")
+        
+        # Proteção contra assunto nulo ou vazio
+        assunto_bruto = mensagem.get("Subject")
+        assunto = decodificar_texto(assunto_bruto) if assunto_bruto else ""
+        
+        remetente = mensagem.get("From") or ""
 
-        if not assunto.startswith("Cadastro Portal Fake -"):
+        # Verifica com segurança antes de usar o startswith
+        if not assunto or not assunto.startswith("Cadastro Portal Fake -"):
             continue
 
         nome_cliente = extrair_nome_cliente(remetente)
