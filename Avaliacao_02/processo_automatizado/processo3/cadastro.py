@@ -3,7 +3,7 @@ import time
 import base64
 from pathlib import Path
 from datetime import datetime
-
+import os
 from botcity.web import WebBot, Browser, By
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.chrome.options import Options
@@ -16,18 +16,15 @@ DELAY = 0.5
 
 def iniciar_bot():
     bot = WebBot()
-    # MODO HEADLESS DEVE SER TRUE PARA RODAR NO DOCKER / GITHUB ACTIONS
     bot.headless = True 
     bot.browser = Browser.CHROME
     bot.driver_path = ChromeDriverManager().install()
     
-    # === CONFIGURAÇÃO DAS OPÇÕES DO CHROME PARA AMBIENTE DOCKER ===
-    chrome_options = Options()
-    chrome_options.add_argument("--no-sandbox")
-    chrome_options.add_argument("--disable-dev-shm-usage")  # Evita o erro 'tab crashed' no Docker
-    
-    # Se o botcity permitir adicionar opções diretamente ou injetar no driver:
-    bot.options = chrome_options
+    # Verifica se estamos dentro de um container Docker (a variável de ambiente 'DOCKER' costuma ser usada)
+    # Ou simplesmente verifica se o sistema é Linux
+    if os.path.exists("/.dockerenv"):
+        bot.add_argument("--no-sandbox")
+        bot.add_argument("--disable-dev-shm-usage")
     
     bot.start_browser()
     return bot
