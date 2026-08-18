@@ -2,7 +2,7 @@ import sys
 import logging
 from pathlib import Path
 
-# 1. A CONFIGURAÇÃO DE LOGS DEVE SER A PRIMEIRA COISA DO ARQUIVO
+
 logging.basicConfig(
     level=logging.INFO,
     format='%(asctime)s - %(levelname)s - %(message)s',
