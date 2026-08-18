@@ -4,11 +4,9 @@ on:
   push:
     branches:
       - main
-      - develop
   pull_request:
     branches:
       - main
-      - develop
 
 jobs:
   testes:
@@ -28,42 +26,6 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Verificar sintaxe
-        run: |
-          python -m compileall .
-
       - name: Executar testes
         run: |
           python -m pytest -v
-
-  build-and-push:
-    name: Build e publicação no GHCR
-    needs: testes
-    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
-    runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      packages: write
-    steps:
-      - name: Baixar código do repositório
-        uses: actions/checkout@v4
-
-      - name: Login no GHCR
-        uses: docker/login-action@v3
-        with:
-          registry: ghcr.io
-          username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Definir nome da imagem
-        run: |
-          IMAGE_NAME=ghcr.io/${{ github.repository }}
-          echo "IMAGE_NAME=${IMAGE_NAME,,}" >> $GITHUB_ENV
-
-      - name: Construir imagem Docker
-        run: |
-          docker build -t $IMAGE_NAME:latest .
-
-      - name: Publicar imagem no GHCR
-        run: |
-          docker push $IMAGE_NAME:latest
