@@ -1,0 +1,10 @@
+.git
+.github
+.pytest_cache
+__pycache__
+*.pyc
+.env
+client_secret.json
+token.pickle
+token_sheets.pickle
+automacao.log
