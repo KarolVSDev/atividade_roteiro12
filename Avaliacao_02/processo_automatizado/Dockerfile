@@ -1,5 +1,10 @@
 FROM python:3.11-slim
 
+# Instula dependências do sistema necessárias para compilar pacotes como evdev
+RUN apt-get update && apt-get install -y \
+    build-essential \
+    && rm -rf /var/lib/apt/lists/*
+
 WORKDIR /app
 
 # Copia e instala as dependências primeiro para aproveitar o cache do Docker
@@ -9,5 +14,4 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Copia o restante do código do projeto para dentro do container
 COPY . .
 
-# Comando padrão executado quando o container subir
 CMD ["python", "bot.py"]
