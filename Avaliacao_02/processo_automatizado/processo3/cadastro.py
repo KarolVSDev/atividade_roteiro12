@@ -18,16 +18,17 @@ def iniciar_bot():
     bot = WebBot()
     bot.headless = True 
     bot.browser = Browser.CHROME
-    bot.driver_path = ChromeDriverManager().install()
     
     # Configura as opções do Chrome corretamente para o ambiente Docker (Linux)
     if os.path.exists("/.dockerenv"):
         options = Options()
         options.add_argument("--no-sandbox")
         options.add_argument("--disable-dev-shm-usage")
-        # Se você precisar passar as opções para o driver subjacente do BotCity:
-        # bot.options = options # (caso sua versão aceite)
-    
+        options.add_argument("--headless=new")
+        # Injeta as opções corretamente no driver do BotCity/Selenium
+        bot.options = options
+        
+    bot.driver_path = ChromeDriverManager().install()
     bot.start_browser()
     return bot
 
@@ -42,8 +43,9 @@ def abrir_portal(bot):
 def fallback_cadastro(cliente, erro):
     """Plano B caso o Selenium/Portal falhe."""
     logging.warning(f"Fallback acionado para {cliente.get('nome')}. Motivo: {erro}")
-    cliente['status_cadastro'] = 'Erro de Automação (Salvo em contingência)'
-    cliente['detalhe_erro'] = str(erro)
+    cliente['status_cadastro'] = 'erro'
+    # Ajustado para 'motivo_erro' conforme exigido pelo contrato do Processo 4
+    cliente['motivo_erro'] = str(erro)
     return cliente
 
 def b_cadastrar_usuario(bot, cliente):
@@ -136,7 +138,7 @@ def executar_cadastro(dados_clientes):
             try:
                 # Tenta realizar o cadastro via interface Web
                 b_cadastrar_usuario(bot, cliente)
-                cliente['status_cadastro'] = 'Sucesso'
+                cliente['status_cadastro'] = 'sucesso'
                 logging.info(f"Cadastro Web realizado com sucesso: {cliente.get('nome')}")
                 resultados_cadastro.append(cliente)
                 
