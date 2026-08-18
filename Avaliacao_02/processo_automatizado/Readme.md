@@ -352,6 +352,56 @@ Verificação da documentação
 
 ---
 
+## Processo 4 — SAC
+
+Módulo em `src/processo4/`, que recebe o resultado do cadastro produzido
+pelo **Processo 3** e realiza o atendimento ao cliente.
+
+### Contrato de entrada (Processo 3 → Processo 4)
+
+O Processo 3 deve depositar um arquivo `.json` por solicitação em
+`src/processo4/entrada_processo3/`, no formato:
+
+```json
+{
+  "protocolo": "PROT-0001",
+  "status_cadastro": "sucesso",
+  "cliente": {
+    "nome": "Nome do Cliente",
+    "email": "cliente@email.com",
+    "cpf": "000.000.000-00"
+  },
+  "motivo_erro": "obrigatório apenas quando status_cadastro = 'erro'",
+  "duplicado": false
+}
+```
+
+### O que o Processo 4 faz
+
+1. Lê e valida cada arquivo em `entrada_processo3/`.
+2. Verifica o resultado (`sucesso` ou `erro`) e trata cada caso.
+3. Comunica o cliente por e-mail (confirmação ou pendência).
+4. Registra o atendimento em `src/processo4/logs/atendimentos.csv`.
+5. Grava o resultado do atendimento em `src/processo4/saida_processo5/{protocolo}.json`
+   (contrato de saída para o **Processo 5**).
+6. Move o arquivo de entrada processado para `processado/`, ou para
+   `erro_processamento/` em caso de falha (fallback — nada é perdido nem
+   segue incompleto para o próximo setor).
+
+Logs de execução (console + arquivo) ficam em `src/processo4/logs/processo4.log`.
+
+### Como testar
+
+```bash
+python -m src.processo4.main
+```
+
+Há dois exemplos prontos em `entrada_processo3/` (`exemplo_sucesso.json` e
+`exemplo_erro.json`) para testar o fluxo completo sem depender do
+Processo 3 já estar pronto.
+
+---
+
 ## Segurança
 
 Não versionar informações sensíveis ou credenciais.
