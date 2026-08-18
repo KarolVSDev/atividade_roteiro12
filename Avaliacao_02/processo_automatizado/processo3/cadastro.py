@@ -20,11 +20,13 @@ def iniciar_bot():
     bot.browser = Browser.CHROME
     bot.driver_path = ChromeDriverManager().install()
     
-    # Verifica se estamos dentro de um container Docker (a variável de ambiente 'DOCKER' costuma ser usada)
-    # Ou simplesmente verifica se o sistema é Linux
+    # Configura as opções do Chrome corretamente para o ambiente Docker (Linux)
     if os.path.exists("/.dockerenv"):
-        bot.add_argument("--no-sandbox")
-        bot.add_argument("--disable-dev-shm-usage")
+        options = Options()
+        options.add_argument("--no-sandbox")
+        options.add_argument("--disable-dev-shm-usage")
+        # Se você precisar passar as opções para o driver subjacente do BotCity:
+        # bot.options = options # (caso sua versão aceite)
     
     bot.start_browser()
     return bot
