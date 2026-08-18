@@ -17,7 +17,7 @@ APP_ROOT = Path(__file__).resolve().parent
 if str(APP_ROOT) not in sys.path:
     sys.path.insert(0, str(APP_ROOT))
 
-# 3. Importação dos processos (agora sim, com os logs já configurados)
+# 3. Importação dos processos
 from processo1.email_monitor import processar_emails
 from processo3.cadastro import executar_cadastro
 from processo4.sac import executar_sac
@@ -42,13 +42,33 @@ def main():
         dados_p4 = executar_sac(dados_p3)
         
         logging.info("Iniciando Processo 5: Relatórios e Gerência")
-        gerar_relatorio(dados_p4)
         
+        # Ponte de dados: traduzimos o resultado do SAC para o formato que o Processo 5 exige
+        registros_para_p5 = []
+        for c in dados_p4:
+            registros_para_p5.append({
+                "id_cliente": c.get("cpf", "ID_DESCONHECIDO"), 
+                "status": c.get("status_atendimento"),
+                "duracao_segundos": 2.5,
+                "mensagem": c.get("observacoes_sac", "Atendimento realizado"),
+                "erro": c.get("detalhe_erro")
+            })
+        
+        # Executa o relatório e salva em 'processo5/saidas'
+        pasta_saidas = APP_ROOT / "processo5" / "saidas"
+        pasta_logs_p5 = APP_ROOT / "processo5" / "logs"
+        
+        resultado_p5 = gerar_relatorio(
+            registros=registros_para_p5, 
+            saidas=pasta_saidas, 
+            logs=pasta_logs_p5
+        )
+        
+        logging.info(f"Relatório gerado com sucesso: {resultado_p5['json']}")
         logging.info("=== Processos 1 ao 5 Concluídos com Sucesso ===")
         
     except Exception as e:
-        logging.error(f"FALHA CRÍTICA NA AUTOMAÇÃO: {e}")
-        logging.info("Executando procedimentos de fallback/recuperação...")
+        logging.error(f"FALHA CRÍTICA NA AUTOMAÇÃO: {e}", exc_info=True)
         sys.exit(1)
 
 if __name__ == "__main__":
