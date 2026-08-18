@@ -27,5 +27,7 @@ jobs:
           pip install -r Avaliacao_02/processo_automatizado/requirements.txt
 
       - name: Executar testes
+        env:
+          PYTHONPATH: Avaliacao_02/processo_automatizado
         run: |
           python -m pytest Avaliacao_02/processo_automatizado/tests -v
