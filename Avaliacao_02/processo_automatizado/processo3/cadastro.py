@@ -6,6 +6,7 @@ from datetime import datetime
 
 from botcity.web import WebBot, Browser, By
 from webdriver_manager.chrome import ChromeDriverManager
+from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.support.ui import Select, WebDriverWait
 from selenium.webdriver.support import expected_conditions as ec
 
@@ -19,6 +20,15 @@ def iniciar_bot():
     bot.headless = True 
     bot.browser = Browser.CHROME
     bot.driver_path = ChromeDriverManager().install()
+    
+    # === CONFIGURAÇÃO DAS OPÇÕES DO CHROME PARA AMBIENTE DOCKER ===
+    chrome_options = Options()
+    chrome_options.add_argument("--no-sandbox")
+    chrome_options.add_argument("--disable-dev-shm-usage")  # Evita o erro 'tab crashed' no Docker
+    
+    # Se o botcity permitir adicionar opções diretamente ou injetar no driver:
+    bot.options = chrome_options
+    
     bot.start_browser()
     return bot
 
@@ -54,7 +64,6 @@ def b_cadastrar_usuario(bot, cliente):
     }
     status_portal = status_map.get(cliente.get('status_planilha'), "PENDENTE")
 
-    # Mapeamento dinâmico dos campos (Usa os dados reais ou um placeholder se não houver)
     # Mapeamento dinâmico dos campos usando os dados que vieram do Processo 1
     campos = [
         ("f_nome", primeiro_nome),
