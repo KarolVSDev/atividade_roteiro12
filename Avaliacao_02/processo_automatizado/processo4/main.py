@@ -7,14 +7,22 @@ APP_ROOT = Path(__file__).resolve().parents[2]
 if str(APP_ROOT) not in sys.path:
     sys.path.insert(0, str(APP_ROOT))
 
-from src.processo4.config import (
+# from src.processo4.config import (
+#     PASTA_ENTRADA_PROCESSO3,
+#     PASTA_PROCESSADO,
+#     PASTA_ERRO,
+# )
+# from src.processo4.contrato import ContratoInvalido
+# from src.processo4.sac import processar_resultado_cadastro, enviar_para_processo5
+# from src.processo4.logger import logger
+from .config import (
     PASTA_ENTRADA_PROCESSO3,
     PASTA_PROCESSADO,
     PASTA_ERRO,
 )
-from src.processo4.contrato import ContratoInvalido
-from src.processo4.sac import processar_resultado_cadastro, enviar_para_processo5
-from src.processo4.logger import logger
+from .contrato import ContratoInvalido
+from .sac import processar_resultado_cadastro, enviar_para_processo5
+from .logger import logger
 
 
 def processar_arquivo(caminho_arquivo):

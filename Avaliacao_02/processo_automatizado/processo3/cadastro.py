@@ -2,6 +2,7 @@ import logging
 import time
 import base64
 from pathlib import Path
+from datetime import datetime
 
 from botcity.web import WebBot, Browser, By
 from webdriver_manager.chrome import ChromeDriverManager
@@ -74,8 +75,13 @@ def b_cadastrar_usuario(bot, cliente):
     bot.find_element('#btnSalvar', By.CSS_SELECTOR).click()
     time.sleep(DELAY)
 
-def tirar_screenshot(bot, arquivo="evidencia_cadastro.png"):
+def tirar_screenshot(bot, arquivo=None):
     try:
+        # Se nenhum nome específico for passado, gera um nome único com data e hora atual
+        if not arquivo:
+            timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+            arquivo = f"evidencia_cadastro_{timestamp}.png"
+            
         # Define o caminho para a pasta 'evidencias' na raiz do projeto
         pasta_evidencias = Path(__file__).resolve().parents[1] / "evidencias"
         

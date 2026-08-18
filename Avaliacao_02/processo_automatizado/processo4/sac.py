@@ -1,19 +1,30 @@
 import json
 
 from datetime import datetime
-
-from src.processo4.contrato import (
+from .contrato import (
     ContratoInvalido,
     validar_entrada,
     montar_saida_processo5,
 )
-from src.processo4.comunicacao import (
+from .comunicacao import (
     notificar_cadastro_aprovado,
     notificar_cadastro_com_erro,
 )
-from src.processo4.atendimento import registrar_atendimento
-from src.processo4.config import PASTA_SAIDA_PROCESSO5
-from src.processo4.logger import logger
+from .atendimento import registrar_atendimento
+from .config import PASTA_SAIDA_PROCESSO5
+from .logger import logger
+# from src.processo4.contrato import (
+#     ContratoInvalido,
+#     validar_entrada,
+#     montar_saida_processo5,
+# )
+# from src.processo4.comunicacao import (
+#     notificar_cadastro_aprovado,
+#     notificar_cadastro_com_erro,
+# )
+# from src.processo4.atendimento import registrar_atendimento
+# from src.processo4.config import PASTA_SAIDA_PROCESSO5
+# from src.processo4.logger import logger
 
 
 def processar_resultado_cadastro(dados):

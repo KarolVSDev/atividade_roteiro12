@@ -20,7 +20,8 @@ if str(APP_ROOT) not in sys.path:
 # 3. Importação dos processos
 from processo1.email_monitor import processar_emails
 from processo3.cadastro import executar_cadastro
-from processo4.sac import executar_sac
+# from processo4.sac import executar_sac
+from processo4 import executar_sac
 from processo5.relatorios import gerar_relatorio
 
 def main():
@@ -44,10 +45,23 @@ def main():
         logging.info("Iniciando Processo 5: Relatórios e Gerência")
         
         # Ponte de dados: traduzimos o resultado do SAC para o formato que o Processo 5 exige
+        # registros_para_p5 = []
+        # for c in dados_p4:
+        #     registros_para_p5.append({
+        #         "id_cliente": c.get("cpf", "ID_DESCONHECIDO"), 
+        #         "status": c.get("status_atendimento"),
+        #         "duracao_segundos": 2.5,
+        #         "mensagem": c.get("observacoes_sac", "Atendimento realizado"),
+        #         "erro": c.get("detalhe_erro")
+        #     })
         registros_para_p5 = []
         for c in dados_p4:
+            # Tenta pegar o CPF da raiz, de dentro de 'cliente', ou usa o protocolo como fallback
+            cliente_info = c.get("cliente", {})
+            id_real = c.get("cpf") or cliente_info.get("cpf") or c.get("protocolo", "ID_DESCONHECIDO")
+            
             registros_para_p5.append({
-                "id_cliente": c.get("cpf", "ID_DESCONHECIDO"), 
+                "id_cliente": id_real, 
                 "status": c.get("status_atendimento"),
                 "duracao_segundos": 2.5,
                 "mensagem": c.get("observacoes_sac", "Atendimento realizado"),

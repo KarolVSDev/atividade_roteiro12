@@ -3,9 +3,10 @@ import smtplib
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 
-from src.processo4.config import EMAIL, SENHA_APP
-from src.processo4.logger import logger
-
+# from src.processo4.config import EMAIL, SENHA_APP
+# from src.processo4.logger import logger
+from .config import EMAIL, SENHA_APP
+from .logger import logger
 
 def _enviar(destinatario, assunto, corpo):
 
