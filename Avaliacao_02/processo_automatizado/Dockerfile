@@ -1,17 +1,16 @@
-FROM python:3.11-slim
+FROM python:3.14-slim
 
-# Instula dependências do sistema necessárias para compilar pacotes como evdev
+# Instula dependências do sistema necessárias para o OpenCV / BotCity
 RUN apt-get update && apt-get install -y \
-    build-essential \
+    libgl1-mesa-glx \
+    libglib2.0-0 \
     && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /app
 
-# Copia e instala as dependências primeiro para aproveitar o cache do Docker
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copia o restante do código do projeto para dentro do container
 COPY . .
 
 CMD ["python", "bot.py"]
