@@ -2,8 +2,10 @@ import csv
 
 from datetime import datetime
 
-from src.processo4.config import ARQUIVO_LOG_ATENDIMENTOS
-from src.processo4.logger import logger
+from .config import ARQUIVO_LOG_ATENDIMENTOS
+from .logger import logger
+# from src.processo4.config import ARQUIVO_LOG_ATENDIMENTOS
+# from src.processo4.logger import logger
 
 CABECALHO = [
     "data_hora",

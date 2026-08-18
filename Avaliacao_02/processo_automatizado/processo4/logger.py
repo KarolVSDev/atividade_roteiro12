@@ -1,6 +1,7 @@
 import logging
 
-from src.processo4.config import ARQUIVO_LOG_TEXTO
+# from src.processo4.config import ARQUIVO_LOG_TEXTO
+from .config import ARQUIVO_LOG_TEXTO
 
 
 def configurar_logger():
