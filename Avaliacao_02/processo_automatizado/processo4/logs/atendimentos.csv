@@ -4,3 +4,6 @@ data_hora,protocolo,cliente_nome,cliente_email,status_cadastro,comunicacao_envia
 18/08/2026 10:13:29,20260818101324000,Ana Karoline Vieira de Souza,anakaroline.souza@ifam.edu.br,sucesso,sim,concluido,
 18/08/2026 10:17:26,20260818101720000,Ana Karoline Vieira de Souza,anakaroline.souza@ifam.edu.br,sucesso,sim,concluido,
 18/08/2026 11:57:19,20260818115714000,Ana Karoline Vieira de Souza,anakaroline.souza@ifam.edu.br,sucesso,sim,concluido,
+24/08/2026 11:30:51,20260824113046000,Ana Karoline Vieira de Souza,anakaroline.souza@ifam.edu.br,erro,sim,encerrado_com_pendencia,Erro crítico de automação: 'Options' object has no attribute '_botcity_temp_dir'
+24/08/2026 11:34:20,20260824113415000,Ana Karoline Vieira de Souza,anakaroline.souza@ifam.edu.br,erro,sim,encerrado_com_pendencia,Erro crítico de automação: property 'driver' of 'WebBot' object has no setter
+24/08/2026 11:37:10,20260824113705000,Ana Karoline Vieira de Souza,anakaroline.souza@ifam.edu.br,sucesso,sim,concluido,
