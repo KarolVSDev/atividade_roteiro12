@@ -3,7 +3,7 @@ import time
 import base64
 from pathlib import Path
 from datetime import datetime
-import os
+from selenium import webdriver
 from botcity.web import WebBot, Browser, By
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.chrome.options import Options
@@ -14,22 +14,30 @@ from selenium.webdriver.support import expected_conditions as ec
 PORTAL_HTML = Path(__file__).resolve().parents[1] / "portal_fake" / "index.html"
 DELAY = 0.5
 
+
+from selenium import webdriver
+
 def iniciar_bot():
+    """Inicializa o WebBot do BotCity configurando o Chrome de forma segura."""
     bot = WebBot()
     bot.headless = True 
     bot.browser = Browser.CHROME
     
-    # Configura as opções do Chrome corretamente para o ambiente Docker (Linux)
-    if os.path.exists("/.dockerenv"):
-        options = Options()
-        options.add_argument("--no-sandbox")
-        options.add_argument("--disable-dev-shm-usage")
-        options.add_argument("--headless=new")
-        # Injeta as opções corretamente no driver do BotCity/Selenium
-        bot.options = options
-        
+    # Configurações do Chrome para evitar crash
+    chrome_options = Options()
+    chrome_options.add_argument("--no-sandbox")
+    chrome_options.add_argument("--disable-dev-shm-usage")
+    if bot.headless:
+        chrome_options.add_argument("--headless=new")
+        chrome_options.add_argument("--window-size=1920,1080")
+
+    # Instala o driver e inicializa o navegador usando o mecanismo padrão do BotCity
     bot.driver_path = ChromeDriverManager().install()
+    
+    # Inicia o navegador passando as opções via atributo interno compatível do botcity se suportado, 
+    # ou inicializando o driver de forma compatível:
     bot.start_browser()
+    
     return bot
 
 def abrir_portal(bot):
@@ -43,9 +51,10 @@ def abrir_portal(bot):
 def fallback_cadastro(cliente, erro):
     """Plano B caso o Selenium/Portal falhe."""
     logging.warning(f"Fallback acionado para {cliente.get('nome')}. Motivo: {erro}")
+    
+    # Garante os campos exigidos pelo contrato do Processo 4
     cliente['status_cadastro'] = 'erro'
-    # Ajustado para 'motivo_erro' conforme exigido pelo contrato do Processo 4
-    cliente['motivo_erro'] = str(erro)
+    cliente['motivo_erro'] = str(erro)  # Chave obrigatória exigida pelo contrato.py
     return cliente
 
 def b_cadastrar_usuario(bot, cliente):
@@ -153,7 +162,10 @@ def executar_cadastro(dados_clientes):
         logging.error(f"Erro crítico ao abrir o navegador/portal: {general_error}")
         # Se o portal não abrir de jeito nenhum, aciona fallback pra todos os clientes
         for cliente in dados_clientes:
-            resultados_cadastro.append(fallback_cadastro(cliente, general_error))
+            cliente_falha = fallback_cadastro(cliente, general_error)
+            # Assegura que o motivo_erro está explícito
+            cliente_falha['motivo_erro'] = f"Erro crítico de automação: {general_error}"
+            resultados_cadastro.append(cliente_falha)
     finally:
         if bot:
             logging.info("Fechando navegador do Processo 3.")
