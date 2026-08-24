@@ -1,0 +1,21 @@
+{
+  "versao": "v014",
+  "gerado_em": "2026-08-24T16:33:37+00:00",
+  "metricas": {
+    "total_processado": 1,
+    "sucessos": 1,
+    "falhas": 0,
+    "pendencias": 0,
+    "taxa_sucesso_percentual": 100.0,
+    "duracao_media_segundos": 2.5
+  },
+  "registros": [
+    {
+      "id_cliente": "04880588210",
+      "status": "concluido",
+      "duracao_segundos": 2.5,
+      "mensagem": "Atendimento realizado",
+      "erro": null
+    }
+  ]
+}
