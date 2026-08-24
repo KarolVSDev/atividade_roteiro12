@@ -2,6 +2,8 @@ import pytest
 from processo4.contrato import validar_entrada, ContratoInvalido
 from processo5.relatorios import calcular_metricas
 
+#python -m pytest
+
 def test_integracao_processo3_para_processo4_sucesso():
     """Simula a integração: Processo 3 envia dados com sucesso para o Processo 4 validar."""
     pacote_processo3 = {

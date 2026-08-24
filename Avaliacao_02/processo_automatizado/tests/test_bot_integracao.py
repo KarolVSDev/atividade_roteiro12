@@ -6,3 +6,6 @@ def test_existencia_arquivo_principal():
     root = Path(__file__).resolve().parents[1]
     bot_path = root / "bot.py"
     assert bot_path.exists(), "O arquivo principal pai.bot.py não foi encontrado!"
+
+
+#comando pra rodar os testes: python -m pytest
