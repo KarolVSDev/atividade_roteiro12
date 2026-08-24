@@ -1175,3 +1175,177 @@ processo4.contrato.ContratoInvalido: Campo 'status_cadastro' deve ser 'sucesso' 
 2026-08-18 14:41:31,541 - INFO - Relatório v010 gerado com sucesso em 0.00s
 2026-08-18 14:41:31,542 - INFO - Relatório gerado com sucesso: C:\Roteiro_13\atividade_roteiro12\Avaliacao_02\processo_automatizado\processo5\saidas\relatorio_v010.json
 2026-08-18 14:41:31,543 - INFO - === Processos 1 ao 5 Concluídos com Sucesso ===
+2026-08-24 09:06:30,178 - INFO - === Iniciando Solução de Hyperautomation ===
+2026-08-24 09:06:30,178 - INFO - Iniciando Processos 1 e 2: Monitoramento e Planilha
+2026-08-24 09:06:30,179 - INFO - Testando DNS...
+2026-08-24 09:06:30,322 - INFO - imap.gmail.com -> 64.233.190.108
+2026-08-24 09:06:30,322 - INFO - Conectando ao Gmail...
+2026-08-24 09:07:20,839 - INFO - Realizando login...
+2026-08-24 09:07:21,567 - INFO - Login realizado com sucesso!
+2026-08-24 09:07:46,009 - ERROR - Erro no processamento de e-mails: [WinError 10053] Uma conexão estabelecida foi anulada pelo software no computador host
+2026-08-24 09:07:46,017 - WARNING - Nenhum cliente novo foi processado ou extraído nesta execução.
+2026-08-24 09:07:46,017 - INFO - === Processo Concluído (Sem novas demandas) ===
+2026-08-24 09:07:53,851 - INFO - === Iniciando Solução de Hyperautomation ===
+2026-08-24 09:07:53,852 - INFO - Iniciando Processos 1 e 2: Monitoramento e Planilha
+2026-08-24 09:07:53,852 - INFO - Testando DNS...
+2026-08-24 09:07:53,866 - INFO - imap.gmail.com -> 64.233.190.109
+2026-08-24 09:07:53,866 - INFO - Conectando ao Gmail...
+2026-08-24 09:07:54,775 - INFO - Realizando login...
+2026-08-24 09:07:55,490 - INFO - Login realizado com sucesso!
+2026-08-24 09:07:56,761 - INFO - 10 e-mail(s) encontrados para processamento.
+2026-08-24 09:07:57,445 - INFO - file_cache is only supported with oauth2client<4.0.0
+2026-08-24 09:07:58,684 - INFO - Cliente identificado: Ana Karoline Vieira de Souza | Assunto: Cadastro Portal Fake - 04880588210
+2026-08-24 09:07:58,684 - INFO - Fazendo upload do arquivo: Ficha_Cadastro_Portal_Fake  (1).pdf
+2026-08-24 09:08:02,600 - INFO - Upload realizado: Ficha_Cadastro_Portal_Fake  (1).pdf na pasta ID: 1dMZwGTF3X_45AgDZ2yd3dWO5TTlWhu3-
+2026-08-24 09:08:02,600 - INFO - PDF enviado para o Google Drive: Ficha_Cadastro_Portal_Fake  (1).pdf
+2026-08-24 09:08:02,601 - INFO - Fazendo upload do arquivo: COMPROVANTE DE RESIDENCIA (1) (1).pdf
+2026-08-24 09:08:05,753 - INFO - Upload realizado: COMPROVANTE DE RESIDENCIA (1) (1).pdf na pasta ID: 1dMZwGTF3X_45AgDZ2yd3dWO5TTlWhu3-
+2026-08-24 09:08:05,753 - INFO - PDF enviado para o Google Drive: COMPROVANTE DE RESIDENCIA (1) (1).pdf
+2026-08-24 09:08:05,754 - INFO - Fazendo upload do arquivo: RG (1) (1).pdf
+2026-08-24 09:08:08,564 - INFO - Upload realizado: RG (1) (1).pdf na pasta ID: 1dMZwGTF3X_45AgDZ2yd3dWO5TTlWhu3-
+2026-08-24 09:08:08,564 - INFO - PDF enviado para o Google Drive: RG (1) (1).pdf
+2026-08-24 09:08:08,565 - INFO - Fazendo upload do arquivo: CPF (1) (1).pdf
+2026-08-24 09:08:11,267 - INFO - Upload realizado: CPF (1) (1).pdf na pasta ID: 1dMZwGTF3X_45AgDZ2yd3dWO5TTlWhu3-
+2026-08-24 09:08:11,267 - INFO - PDF enviado para o Google Drive: CPF (1) (1).pdf
+2026-08-24 09:08:11,267 - INFO - Documentos encontrados para Ana Karoline Vieira de Souza: Ficha_Cadastro_Portal_Fake  (1).pdf, COMPROVANTE DE RESIDENCIA (1) (1).pdf, RG (1) (1).pdf, CPF (1) (1).pdf
+2026-08-24 09:08:11,267 - INFO - Documentação COMPLETA.
+2026-08-24 09:08:11,268 - INFO - Enviando confirmação para: anakaroline.souza@ifam.edu.br
+2026-08-24 09:08:16,338 - INFO - E-mail de confirmação enviado para anakaroline.souza@ifam.edu.br
+2026-08-24 09:08:16,878 - INFO - Pasta já existente no Drive: Ana Karoline Vieira de Souza
+2026-08-24 09:08:16,878 - INFO - Pasta criada para o cliente no Drive.
+2026-08-24 09:08:16,878 - INFO - Movendo documentos para Documentos_Encaminhados...
+2026-08-24 09:08:23,837 - INFO - Extraindo dados da ficha cadastral...
+2026-08-24 09:08:25,027 - ERROR - Erro ao conectar à planilha: ('invalid_grant: Token has been expired or revoked.', {'error': 'invalid_grant', 'error_description': 'Token has been expired or revoked.'})
+2026-08-24 09:08:25,029 - INFO - Planilha atualizada com status: Aprovado
+2026-08-24 09:08:32,550 - INFO - Processo 1 (Leitura de E-mails) finalizado.
+2026-08-24 09:08:32,551 - INFO - Iniciando Processo 3: Cadastro
+2026-08-24 09:08:32,551 - INFO - --- Iniciando Processo 3: Cadastro no Portal Fake ---
+2026-08-24 09:08:32,551 - INFO - Iniciando navegador (WebBot)...
+2026-08-24 09:08:32,552 - INFO - ====== WebDriver manager ======
+2026-08-24 09:08:34,569 - INFO - Get LATEST chromedriver version for google-chrome
+2026-08-24 09:08:35,688 - INFO - Get LATEST chromedriver version for google-chrome
+2026-08-24 09:08:36,797 - INFO - WebDriver version 151.0.7922.138 selected
+2026-08-24 09:08:36,802 - INFO - Modern chrome version https://storage.googleapis.com/chrome-for-testing-public/151.0.7922.138/win64/chromedriver-win64.zip
+2026-08-24 09:08:36,802 - INFO - About to download new driver from https://storage.googleapis.com/chrome-for-testing-public/151.0.7922.138/win64/chromedriver-win64.zip
+2026-08-24 09:08:37,453 - INFO - Driver downloading response is 200
+2026-08-24 09:08:48,940 - INFO - Driver has been saved in cache [C:\Users\Ana Karoline\.wdm\drivers\chromedriver\win64\151.0.7922.138]
+2026-08-24 09:08:50,770 - INFO - Cadastrando [1/1]: Ana Karoline Vieira de Souza
+2026-08-24 09:08:52,176 - INFO - Cadastro Web realizado com sucesso: Ana Karoline Vieira de Souza
+2026-08-24 09:08:52,281 - INFO - Screenshot salvo em: C:\Roteiro_13\atividade_roteiro12\Avaliacao_02\processo_automatizado\evidencias\evidencia_cadastro_20260824_090852.png
+2026-08-24 09:08:52,281 - INFO - Fechando navegador do Processo 3.
+2026-08-24 09:08:54,502 - INFO - Processo 3 concluído. Total processado: 1
+2026-08-24 09:08:54,502 - INFO - Iniciando Processo 4: SAC
+2026-08-24 09:08:54,505 - INFO - [20260824090854000] Verificando resultado do cadastro: sucesso.
+2026-08-24 09:08:59,285 - INFO - [20260824090854000] E-mail de sucesso enviado para anakaroline.souza@ifam.edu.br.
+2026-08-24 09:08:59,288 - INFO - [20260824090854000] Atendimento registrado em atendimentos.csv.
+2026-08-24 09:08:59,289 - INFO - Iniciando Processo 5: Relatórios e Gerência
+2026-08-24 09:08:59,294 - INFO - Relatório v011 gerado com sucesso em 0.00s
+2026-08-24 09:08:59,296 - INFO - Relatório gerado com sucesso: C:\Roteiro_13\atividade_roteiro12\Avaliacao_02\processo_automatizado\processo5\saidas\relatorio_v011.json
+2026-08-24 09:08:59,296 - INFO - === Processos 1 ao 5 Concluídos com Sucesso ===
+2026-08-24 09:13:22,162 - INFO - === Iniciando Solução de Hyperautomation ===
+2026-08-24 09:13:22,162 - INFO - Iniciando Processos 1 e 2: Monitoramento e Planilha
+2026-08-24 09:13:22,163 - INFO - Testando DNS...
+2026-08-24 09:13:22,187 - INFO - imap.gmail.com -> 64.233.190.109
+2026-08-24 09:13:22,187 - INFO - Conectando ao Gmail...
+2026-08-24 09:13:23,133 - INFO - Realizando login...
+2026-08-24 09:13:23,874 - INFO - Login realizado com sucesso!
+2026-08-24 09:13:25,194 - INFO - 10 e-mail(s) encontrados para processamento.
+2026-08-24 09:13:25,230 - INFO - file_cache is only supported with oauth2client<4.0.0
+2026-08-24 09:13:26,445 - INFO - Cliente identificado: Ana Karoline Vieira de Souza | Assunto: Cadastro Portal Fake - 04880588210
+2026-08-24 09:13:26,445 - INFO - Fazendo upload do arquivo: Ficha_Cadastro_Portal_Fake  (1).pdf
+2026-08-24 09:13:29,628 - INFO - Upload realizado: Ficha_Cadastro_Portal_Fake  (1).pdf na pasta ID: 1dMZwGTF3X_45AgDZ2yd3dWO5TTlWhu3-
+2026-08-24 09:13:29,629 - INFO - PDF enviado para o Google Drive: Ficha_Cadastro_Portal_Fake  (1).pdf
+2026-08-24 09:13:29,629 - INFO - Fazendo upload do arquivo: COMPROVANTE DE RESIDENCIA (1) (1).pdf
+2026-08-24 09:13:32,291 - INFO - Upload realizado: COMPROVANTE DE RESIDENCIA (1) (1).pdf na pasta ID: 1dMZwGTF3X_45AgDZ2yd3dWO5TTlWhu3-
+2026-08-24 09:13:32,292 - INFO - PDF enviado para o Google Drive: COMPROVANTE DE RESIDENCIA (1) (1).pdf
+2026-08-24 09:13:32,293 - INFO - Fazendo upload do arquivo: RG (1) (1).pdf
+2026-08-24 09:13:34,743 - INFO - Upload realizado: RG (1) (1).pdf na pasta ID: 1dMZwGTF3X_45AgDZ2yd3dWO5TTlWhu3-
+2026-08-24 09:13:34,744 - INFO - PDF enviado para o Google Drive: RG (1) (1).pdf
+2026-08-24 09:13:34,745 - INFO - Fazendo upload do arquivo: CPF (1) (1).pdf
+2026-08-24 09:13:37,456 - INFO - Upload realizado: CPF (1) (1).pdf na pasta ID: 1dMZwGTF3X_45AgDZ2yd3dWO5TTlWhu3-
+2026-08-24 09:13:37,457 - INFO - PDF enviado para o Google Drive: CPF (1) (1).pdf
+2026-08-24 09:13:37,457 - INFO - Documentos encontrados para Ana Karoline Vieira de Souza: Ficha_Cadastro_Portal_Fake  (1).pdf, COMPROVANTE DE RESIDENCIA (1) (1).pdf, RG (1) (1).pdf, CPF (1) (1).pdf
+2026-08-24 09:13:37,458 - INFO - Documentação COMPLETA.
+2026-08-24 09:13:37,458 - INFO - Enviando confirmação para: anakaroline.souza@ifam.edu.br
+2026-08-24 09:13:42,125 - INFO - E-mail de confirmação enviado para anakaroline.souza@ifam.edu.br
+2026-08-24 09:13:42,706 - INFO - Pasta já existente no Drive: Ana Karoline Vieira de Souza
+2026-08-24 09:13:42,707 - INFO - Pasta criada para o cliente no Drive.
+2026-08-24 09:13:42,707 - INFO - Movendo documentos para Documentos_Encaminhados...
+2026-08-24 09:13:53,529 - INFO - Extraindo dados da ficha cadastral...
+2026-08-24 09:13:54,710 - ERROR - Erro ao conectar à planilha: ('invalid_grant: Token has been expired or revoked.', {'error': 'invalid_grant', 'error_description': 'Token has been expired or revoked.'})
+2026-08-24 09:13:54,714 - INFO - Planilha atualizada com status: Aprovado
+2026-08-24 09:14:02,681 - INFO - Processo 1 (Leitura de E-mails) finalizado.
+2026-08-24 09:14:02,682 - INFO - Iniciando Processo 3: Cadastro
+2026-08-24 09:14:02,682 - INFO - --- Iniciando Processo 3: Cadastro no Portal Fake ---
+2026-08-24 09:14:02,683 - INFO - Iniciando navegador (WebBot)...
+2026-08-24 09:14:02,684 - INFO - ====== WebDriver manager ======
+2026-08-24 09:14:03,534 - INFO - Driver [C:\Users\Ana Karoline\.wdm\drivers\chromedriver\win64\151.0.7922.138\chromedriver-win64/chromedriver.exe] found in cache by browser version
+2026-08-24 09:14:05,029 - INFO - Cadastrando [1/1]: Ana Karoline Vieira de Souza
+2026-08-24 09:14:06,503 - INFO - Cadastro Web realizado com sucesso: Ana Karoline Vieira de Souza
+2026-08-24 09:14:06,631 - INFO - Screenshot salvo em: C:\Roteiro_13\atividade_roteiro12\Avaliacao_02\processo_automatizado\evidencias\evidencia_cadastro_20260824_091406.png
+2026-08-24 09:14:06,631 - INFO - Fechando navegador do Processo 3.
+2026-08-24 09:14:08,845 - INFO - Processo 3 concluído. Total processado: 1
+2026-08-24 09:14:08,846 - INFO - Iniciando Processo 4: SAC
+2026-08-24 09:14:08,849 - INFO - [20260824091408000] Verificando resultado do cadastro: sucesso.
+2026-08-24 09:14:13,158 - INFO - [20260824091408000] E-mail de sucesso enviado para anakaroline.souza@ifam.edu.br.
+2026-08-24 09:14:13,161 - INFO - [20260824091408000] Atendimento registrado em atendimentos.csv.
+2026-08-24 09:14:13,162 - INFO - Iniciando Processo 5: Relatórios e Gerência
+2026-08-24 09:14:13,173 - INFO - Relatório v012 gerado com sucesso em 0.01s
+2026-08-24 09:14:13,181 - INFO - Relatório gerado com sucesso: C:\Roteiro_13\atividade_roteiro12\Avaliacao_02\processo_automatizado\processo5\saidas\relatorio_v012.json
+2026-08-24 09:14:13,188 - INFO - === Processos 1 ao 5 Concluídos com Sucesso ===
+2026-08-24 09:17:18,130 - INFO - === Iniciando Solução de Hyperautomation ===
+2026-08-24 09:17:18,134 - INFO - Iniciando Processos 1 e 2: Monitoramento e Planilha
+2026-08-24 09:17:18,134 - INFO - Testando DNS...
+2026-08-24 09:17:18,304 - INFO - imap.gmail.com -> 64.233.186.109
+2026-08-24 09:17:18,305 - INFO - Conectando ao Gmail...
+2026-08-24 09:17:19,250 - INFO - Realizando login...
+2026-08-24 09:17:19,957 - INFO - Login realizado com sucesso!
+2026-08-24 09:17:21,242 - INFO - 10 e-mail(s) encontrados para processamento.
+2026-08-24 09:17:21,447 - INFO - Please visit this URL to authorize this application: https://accounts.google.com/o/oauth2/auth?response_type=code&client_id=187844649787-s37u7b031irt4q0kvfpbqaa4dgcdvrg3.apps.googleusercontent.com&redirect_uri=http%3A%2F%2Flocalhost%3A56439%2F&scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fdrive&state=g1IiwiH3gAIPMESDKfXoV5PggnQdjq&code_challenge=BWNCZ3hkYwsxRkCV3LEi6vXsGYWOwdwtnpMleCymII8&code_challenge_method=S256&access_type=offline
+2026-08-24 09:17:31,158 - INFO - "GET /?state=g1IiwiH3gAIPMESDKfXoV5PggnQdjq&iss=https://accounts.google.com&code=4/0ATsMZqCw9OZWw_kP0Y9e_VEu0wop2V50cRFLM4d4AhDxTOyBMnaQhH73KcuRXo89EZywNQ&scope=https://www.googleapis.com/auth/drive HTTP/1.1" 200 65
+2026-08-24 09:17:32,271 - INFO - file_cache is only supported with oauth2client<4.0.0
+2026-08-24 09:17:33,338 - INFO - Cliente identificado: Ana Karoline Vieira de Souza | Assunto: Cadastro Portal Fake - 04880588210
+2026-08-24 09:17:33,338 - INFO - Fazendo upload do arquivo: Ficha_Cadastro_Portal_Fake  (1).pdf
+2026-08-24 09:17:37,148 - INFO - Upload realizado: Ficha_Cadastro_Portal_Fake  (1).pdf na pasta ID: 1dMZwGTF3X_45AgDZ2yd3dWO5TTlWhu3-
+2026-08-24 09:17:37,148 - INFO - PDF enviado para o Google Drive: Ficha_Cadastro_Portal_Fake  (1).pdf
+2026-08-24 09:17:37,148 - INFO - Fazendo upload do arquivo: COMPROVANTE DE RESIDENCIA (1) (1).pdf
+2026-08-24 09:17:39,849 - INFO - Upload realizado: COMPROVANTE DE RESIDENCIA (1) (1).pdf na pasta ID: 1dMZwGTF3X_45AgDZ2yd3dWO5TTlWhu3-
+2026-08-24 09:17:39,850 - INFO - PDF enviado para o Google Drive: COMPROVANTE DE RESIDENCIA (1) (1).pdf
+2026-08-24 09:17:39,851 - INFO - Fazendo upload do arquivo: RG (1) (1).pdf
+2026-08-24 09:17:42,571 - INFO - Upload realizado: RG (1) (1).pdf na pasta ID: 1dMZwGTF3X_45AgDZ2yd3dWO5TTlWhu3-
+2026-08-24 09:17:42,571 - INFO - PDF enviado para o Google Drive: RG (1) (1).pdf
+2026-08-24 09:17:42,572 - INFO - Fazendo upload do arquivo: CPF (1) (1).pdf
+2026-08-24 09:17:45,528 - INFO - Upload realizado: CPF (1) (1).pdf na pasta ID: 1dMZwGTF3X_45AgDZ2yd3dWO5TTlWhu3-
+2026-08-24 09:17:45,528 - INFO - PDF enviado para o Google Drive: CPF (1) (1).pdf
+2026-08-24 09:17:45,528 - INFO - Documentos encontrados para Ana Karoline Vieira de Souza: Ficha_Cadastro_Portal_Fake  (1).pdf, COMPROVANTE DE RESIDENCIA (1) (1).pdf, RG (1) (1).pdf, CPF (1) (1).pdf
+2026-08-24 09:17:45,528 - INFO - Documentação COMPLETA.
+2026-08-24 09:17:45,528 - INFO - Enviando confirmação para: anakaroline.souza@ifam.edu.br
+2026-08-24 09:17:50,549 - INFO - E-mail de confirmação enviado para anakaroline.souza@ifam.edu.br
+2026-08-24 09:17:50,997 - INFO - Pasta já existente no Drive: Ana Karoline Vieira de Souza
+2026-08-24 09:17:50,997 - INFO - Pasta criada para o cliente no Drive.
+2026-08-24 09:17:50,997 - INFO - Movendo documentos para Documentos_Encaminhados...
+2026-08-24 09:17:58,579 - INFO - Extraindo dados da ficha cadastral...
+2026-08-24 09:17:58,648 - INFO - Please visit this URL to authorize this application: https://accounts.google.com/o/oauth2/auth?response_type=code&client_id=187844649787-s37u7b031irt4q0kvfpbqaa4dgcdvrg3.apps.googleusercontent.com&redirect_uri=http%3A%2F%2Flocalhost%3A61851%2F&scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fspreadsheets+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fdrive&state=vdjzVMoOTCReO59RZNbCkkFyL5r4ho&code_challenge=Clqk2fW_Mzcg21jF2NqcEwcHqf1_MIj4AjfYWahjtvI&code_challenge_method=S256&access_type=offline
+2026-08-24 09:18:12,067 - INFO - "GET /?state=vdjzVMoOTCReO59RZNbCkkFyL5r4ho&iss=https://accounts.google.com&code=4/0ATsMZqDvDSi_u-SI9Nx_DnEyvfGCgZW4t6p-o3-B_N0RSC74_AEeYebzhl61xIuDF8BPrQ&scope=https://www.googleapis.com/auth/spreadsheets%20https://www.googleapis.com/auth/drive HTTP/1.1" 200 65
+2026-08-24 09:18:14,438 - INFO - Conectado ao Google Sheets com sucesso!
+2026-08-24 09:18:15,009 - INFO - Planilha mestre atualizada com sucesso no Google Sheets.
+2026-08-24 09:18:15,012 - INFO - Planilha atualizada com status: Aprovado
+2026-08-24 09:18:22,882 - INFO - Processo 1 (Leitura de E-mails) finalizado.
+2026-08-24 09:18:22,883 - INFO - Iniciando Processo 3: Cadastro
+2026-08-24 09:18:22,883 - INFO - --- Iniciando Processo 3: Cadastro no Portal Fake ---
+2026-08-24 09:18:22,883 - INFO - Iniciando navegador (WebBot)...
+2026-08-24 09:18:22,884 - INFO - ====== WebDriver manager ======
+2026-08-24 09:18:23,680 - INFO - Driver [C:\Users\Ana Karoline\.wdm\drivers\chromedriver\win64\151.0.7922.138\chromedriver-win64/chromedriver.exe] found in cache by browser version
+2026-08-24 09:18:25,090 - INFO - Cadastrando [1/1]: Ana Karoline Vieira de Souza
+2026-08-24 09:18:26,559 - INFO - Cadastro Web realizado com sucesso: Ana Karoline Vieira de Souza
+2026-08-24 09:18:26,662 - INFO - Screenshot salvo em: C:\Roteiro_13\atividade_roteiro12\Avaliacao_02\processo_automatizado\evidencias\evidencia_cadastro_20260824_091826.png
+2026-08-24 09:18:26,662 - INFO - Fechando navegador do Processo 3.
+2026-08-24 09:18:28,842 - INFO - Processo 3 concluído. Total processado: 1
+2026-08-24 09:18:28,842 - INFO - Iniciando Processo 4: SAC
+2026-08-24 09:18:28,845 - INFO - [20260824091828000] Verificando resultado do cadastro: sucesso.
+2026-08-24 09:18:34,817 - INFO - [20260824091828000] E-mail de sucesso enviado para anakaroline.souza@ifam.edu.br.
+2026-08-24 09:18:34,818 - INFO - [20260824091828000] Atendimento registrado em atendimentos.csv.
+2026-08-24 09:18:34,819 - INFO - Iniciando Processo 5: Relatórios e Gerência
+2026-08-24 09:18:34,823 - INFO - Relatório v013 gerado com sucesso em 0.00s
+2026-08-24 09:18:34,827 - INFO - Relatório gerado com sucesso: C:\Roteiro_13\atividade_roteiro12\Avaliacao_02\processo_automatizado\processo5\saidas\relatorio_v013.json
+2026-08-24 09:18:34,829 - INFO - === Processos 1 ao 5 Concluídos com Sucesso ===

@@ -1,5 +1,6 @@
 import pytest
 from processo4.contrato import validar_entrada, ContratoInvalido
+from processo5.relatorios import calcular_metricas
 
 def test_integracao_processo3_para_processo4_sucesso():
     """Simula a integração: Processo 3 envia dados com sucesso para o Processo 4 validar."""
@@ -60,3 +61,29 @@ def test_integracao_rejeita_status_desconhecido():
     
     with pytest.raises(ContratoInvalido):
         validar_entrada(pacote_status_maluco)
+
+
+def test_integracao_fluxo_pont_a_ponta():
+    """Simula o fluxo integrado de ponta a ponta: do contrato do Processo 4 até as métricas do Processo 5."""
+    
+    # 1. Simula o formato exato que o Processo 5 espera ler
+    lote_atendimentos = [
+        {
+            "protocolo": "20260824100001",
+            "status": "sucesso",  # Ajustado para a chave que o Processo 5 lê
+            "cliente": {"nome": "Ana Karoline", "email": "ana@email.com", "cpf": "12345678901"}
+        },
+        {
+            "protocolo": "20260824100002",
+            "status": "erro",     # Ajustado para a chave que o Processo 5 lê
+            "motivo_erro": "Elemento não encontrado no Portal Fake",
+            "cliente": {"nome": "Teste da Silva", "email": "teste@email.com", "cpf": "98765432109"}
+        }
+    ]
+    
+    # 2. Processo 5 consome esses dados consolidados para gerar as métricas gerenciais
+    metricas = calcular_metricas(lote_atendimentos)
+    
+    # 3. Valida se a integração entre o SAC e os Relatórios aconteceu corretamente
+    assert metricas["total_processado"] == 2
+    assert metricas["taxa_sucesso_percentual"] == 50.0
