@@ -32,7 +32,7 @@ def notificar_cadastro_aprovado(nome_cliente, email_cliente, protocolo):
     no fluxo do SAC.
     """
 
-    assunto = "Atendimento concluído - Cadastro aprovado"
+    assunto = f"Atendimento concluído - Cadastro aprovado (Prot: {protocolo})External"
 
     corpo = f"""
 Olá, {nome_cliente}!

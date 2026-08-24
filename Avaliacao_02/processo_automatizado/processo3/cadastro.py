@@ -147,7 +147,7 @@ def executar_cadastro(dados_clientes):
             try:
                 # Tenta realizar o cadastro via interface Web
                 b_cadastrar_usuario(bot, cliente)
-                cliente['status_cadastro'] = 'Sucesso'
+                cliente['status_cadastro'] = 'sucesso'
                 logging.info(f"Cadastro Web realizado com sucesso: {cliente.get('nome')}")
                 resultados_cadastro.append(cliente)
                 
