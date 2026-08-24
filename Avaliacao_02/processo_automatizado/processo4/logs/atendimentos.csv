@@ -7,3 +7,29 @@ data_hora,protocolo,cliente_nome,cliente_email,status_cadastro,comunicacao_envia
 24/08/2026 11:30:51,20260824113046000,Ana Karoline Vieira de Souza,anakaroline.souza@ifam.edu.br,erro,sim,encerrado_com_pendencia,Erro crítico de automação: 'Options' object has no attribute '_botcity_temp_dir'
 24/08/2026 11:34:20,20260824113415000,Ana Karoline Vieira de Souza,anakaroline.souza@ifam.edu.br,erro,sim,encerrado_com_pendencia,Erro crítico de automação: property 'driver' of 'WebBot' object has no setter
 24/08/2026 11:37:10,20260824113705000,Ana Karoline Vieira de Souza,anakaroline.souza@ifam.edu.br,sucesso,sim,concluido,
+24/08/2026 12:12:46,20260824121241000,Ana Karoline Vieira de Souza,anakaroline.souza@ifam.edu.br,sucesso,sim,concluido,
+24/08/2026 12:23:48,20260824122343000,Ana Karoline Vieira de Souza,anakaroline.souza@ifam.edu.br,erro,sim,encerrado_com_pendencia,"Erro crítico de automação: Message: session not created: Chrome failed to start: crashed.
+  (chrome not reachable)
+  (The process started from chrome location C:\Program Files\Google\Chrome\Application\chrome.exe is no longer running, so ChromeDriver is assuming that Chrome has crashed.); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#sessionnotcreatedexception
+Stacktrace:
+	chromedriver!GetHandleVerifier [0x7ff76306abb5+151b5]
+	chromedriver!GetHandleVerifier [0x7ff76306ac10+15210]
+	chromedriver!(No symbol) [0x7ff762b95d6d]
+	chromedriver!(No symbol) [0x7ff762bd89eb]
+	chromedriver!(No symbol) [0x7ff762bd3e4f]
+	chromedriver!(No symbol) [0x7ff762c27e81]
+	chromedriver!(No symbol) [0x7ff762c276e6]
+	chromedriver!(No symbol) [0x7ff762be37cc]
+	chromedriver!(No symbol) [0x7ff762be46f3]
+	chromedriver!GetHandleVerifier [0x7ff76368b79b+635d9b]
+	chromedriver!GetHandleVerifier [0x7ff763685ac6+6300c6]
+	chromedriver!GetHandleVerifier [0x7ff7636abcee+6562ee]
+	chromedriver!GetHandleVerifier [0x7ff763088ffe+335fe]
+	chromedriver!GetHandleVerifier [0x7ff76309147c+3ba7c]
+	chromedriver!GetHandleVerifier [0x7ff763074d64+1f364]
+	chromedriver!GetHandleVerifier [0x7ff763074ef4+1f4f4]
+	chromedriver!GetHandleVerifier [0x7ff763057d97+2397]
+	KERNEL32!BaseThreadInitThunk [0x7ffd996eccb7+17]
+	ntdll!RtlUserThreadStart [0x7ffd9a4aad6c+2c]
+"
+24/08/2026 12:26:02,20260824122556000,Ana Karoline Vieira de Souza,anakaroline.souza@ifam.edu.br,sucesso,sim,concluido,

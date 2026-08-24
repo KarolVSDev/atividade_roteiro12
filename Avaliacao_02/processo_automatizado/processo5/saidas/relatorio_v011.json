@@ -1,6 +1,10 @@
 {
   "versao": "v011",
+<<<<<<< HEAD
   "gerado_em": "2026-08-24T13:08:59+00:00",
+=======
+  "gerado_em": "2026-08-24T16:12:46+00:00",
+>>>>>>> 26bb2ae (fix: remove flag single-process e ajusta instanciacao do webdriver para compatibilidade local e docker)
   "metricas": {
     "total_processado": 1,
     "sucessos": 1,
