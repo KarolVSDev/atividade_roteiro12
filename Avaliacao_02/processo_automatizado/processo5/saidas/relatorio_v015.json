@@ -1,0 +1,28 @@
+{
+  "versao": "v015",
+  "gerado_em": "2026-08-24T18:54:49+00:00",
+  "metricas": {
+    "total_processado": 2,
+    "sucessos": 2,
+    "falhas": 0,
+    "pendencias": 0,
+    "taxa_sucesso_percentual": 100.0,
+    "duracao_media_segundos": 2.5
+  },
+  "registros": [
+    {
+      "id_cliente": "93831921255",
+      "status": "concluido",
+      "duracao_segundos": 2.5,
+      "mensagem": "Atendimento realizado",
+      "erro": null
+    },
+    {
+      "id_cliente": "04880588210",
+      "status": "concluido",
+      "duracao_segundos": 2.5,
+      "mensagem": "Atendimento realizado",
+      "erro": null
+    }
+  ]
+}

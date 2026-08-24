@@ -4,7 +4,7 @@
 
 Esta atividade tem como objetivo praticar o uso do **Git e GitHub** para controle de versão, organização do projeto e gerenciamento de diferentes linhas de desenvolvimento por meio de branches.
 
-Durante a atividade, foram realizadas operações de criação, exclusão, atualização e sincronização de branches, além do acompanhamento do histórico de commits.
+<!-- Durante a atividade, foram realizadas operações de criação, exclusão, atualização e sincronização de branches, além do acompanhamento do histórico de commits. -->
 
 ---
 
