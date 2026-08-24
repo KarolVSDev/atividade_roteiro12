@@ -14,5 +14,7 @@ __pycache__/
 *.pyc
 
 # Arquivos temporários
+# downloads/
+# *.log, *.csv
 downloads/
 *.log, *.csv
