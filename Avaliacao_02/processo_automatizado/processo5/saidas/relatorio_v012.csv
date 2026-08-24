@@ -1,2 +1,6 @@
 id_cliente,status,duracao_segundos,mensagem
+<<<<<<< HEAD
 04880588210,concluido,2.5,Atendimento realizado
+=======
+04880588210,encerrado_com_pendencia,2.5,Atendimento realizado
+>>>>>>> 26bb2ae (fix: remove flag single-process e ajusta instanciacao do webdriver para compatibilidade local e docker)

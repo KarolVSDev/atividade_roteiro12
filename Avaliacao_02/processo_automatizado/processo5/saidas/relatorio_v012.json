@@ -1,5 +1,6 @@
 {
   "versao": "v012",
+<<<<<<< HEAD
   "gerado_em": "2026-08-24T13:14:13+00:00",
   "metricas": {
     "total_processado": 1,
@@ -7,12 +8,25 @@
     "falhas": 0,
     "pendencias": 0,
     "taxa_sucesso_percentual": 100.0,
+=======
+  "gerado_em": "2026-08-24T16:23:48+00:00",
+  "metricas": {
+    "total_processado": 1,
+    "sucessos": 0,
+    "falhas": 0,
+    "pendencias": 0,
+    "taxa_sucesso_percentual": 0.0,
+>>>>>>> 26bb2ae (fix: remove flag single-process e ajusta instanciacao do webdriver para compatibilidade local e docker)
     "duracao_media_segundos": 2.5
   },
   "registros": [
     {
       "id_cliente": "04880588210",
+<<<<<<< HEAD
       "status": "concluido",
+=======
+      "status": "encerrado_com_pendencia",
+>>>>>>> 26bb2ae (fix: remove flag single-process e ajusta instanciacao do webdriver para compatibilidade local e docker)
       "duracao_segundos": 2.5,
       "mensagem": "Atendimento realizado",
       "erro": null

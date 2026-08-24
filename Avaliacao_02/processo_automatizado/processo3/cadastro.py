@@ -18,26 +18,27 @@ DELAY = 0.5
 from selenium import webdriver
 
 def iniciar_bot():
-    """Inicializa o WebBot do BotCity configurando o Chrome de forma segura."""
+    """Inicializa o navegador via Selenium puro com opções seguras e compatíveis com Windows e Docker."""
     bot = WebBot()
     bot.headless = True 
     bot.browser = Browser.CHROME
     
-    # Configurações do Chrome para evitar crash
+    # Configurações do Chrome compatíveis com Windows e Linux/Docker
     chrome_options = Options()
     chrome_options.add_argument("--no-sandbox")
     chrome_options.add_argument("--disable-dev-shm-usage")
+    chrome_options.add_argument("--disable-gpu")
+    
     if bot.headless:
         chrome_options.add_argument("--headless=new")
         chrome_options.add_argument("--window-size=1920,1080")
 
-    # Instala o driver e inicializa o navegador usando o mecanismo padrão do BotCity
-    bot.driver_path = ChromeDriverManager().install()
+    # Inicializa o driver manualmente via Selenium
+    service = webdriver.chrome.service.Service(ChromeDriverManager().install())
+    driver = webdriver.Chrome(service=service, options=chrome_options)
     
-    # Inicia o navegador passando as opções via atributo interno compatível do botcity se suportado, 
-    # ou inicializando o driver de forma compatível:
-    bot.start_browser()
-    
+    # Associa o driver configurado ao BotCity
+    bot._driver = driver
     return bot
 
 def abrir_portal(bot):

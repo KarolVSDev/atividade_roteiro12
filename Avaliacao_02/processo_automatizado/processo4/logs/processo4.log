@@ -22,3 +22,12 @@
 24/08/2026 11:37:05 | INFO | [20260824113705000] Verificando resultado do cadastro: sucesso.
 24/08/2026 11:37:10 | INFO | [20260824113705000] E-mail de sucesso enviado para anakaroline.souza@ifam.edu.br.
 24/08/2026 11:37:10 | INFO | [20260824113705000] Atendimento registrado em atendimentos.csv.
+24/08/2026 12:12:41 | INFO | [20260824121241000] Verificando resultado do cadastro: sucesso.
+24/08/2026 12:12:46 | INFO | [20260824121241000] E-mail de sucesso enviado para anakaroline.souza@ifam.edu.br.
+24/08/2026 12:12:46 | INFO | [20260824121241000] Atendimento registrado em atendimentos.csv.
+24/08/2026 12:23:43 | INFO | [20260824122343000] Verificando resultado do cadastro: erro.
+24/08/2026 12:23:48 | INFO | [20260824122343000] E-mail de pendência enviado para anakaroline.souza@ifam.edu.br.
+24/08/2026 12:23:48 | INFO | [20260824122343000] Atendimento registrado em atendimentos.csv.
+24/08/2026 12:25:56 | INFO | [20260824122556000] Verificando resultado do cadastro: sucesso.
+24/08/2026 12:26:02 | INFO | [20260824122556000] E-mail de sucesso enviado para anakaroline.souza@ifam.edu.br.
+24/08/2026 12:26:02 | INFO | [20260824122556000] Atendimento registrado em atendimentos.csv.
